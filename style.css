@@ -24,10 +24,19 @@ a {
 
 nav>div {
     /* 居中 */
-    display  : inline-block;
+    display  : flex;
     position : relative;
     left     : 50%;
     transform: translateX(-50%);
+}
+
+nav>div>li,
+nav>div>a {
+    flex-grow  : 1;
+    flex-shrink: 1;
+}
+nav>div>a>li{
+    width: 100%;
 }
 
 li {
@@ -47,7 +56,7 @@ li {
     padding: 5px 10px;
 
     /* 宽70px 高25px */
-    width : 70px;
+    /* width : 70px; */
     height: 25px;
 
     /* 设置背景色和文字颜色 */
@@ -100,7 +109,7 @@ li {
 .nav-1:hover {
     /* 鼠标移上去时改变背景色 */
     background: var(--hover-color);
-    
+
     /* 鼠标移上去时改变文字颜色 */
     color: var(--hover-text-color);
 }
