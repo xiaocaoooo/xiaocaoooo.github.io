@@ -1,17 +1,19 @@
-import ybc_box as box
-import ybc_speech as speech
-import time
-import ybc_browser as browser
-import urllib.request as rq
-import ybc_camera as camera
-import ybc_face as face
-import ybc_food as food
-import ybc_pinyin as pinyin
-import ybc_player as player
+# 导入模块
+import ybc_box as box            # 弹窗模块
+import time                      # 时间模块
+import ybc_browser as browser    # 浏览器模块
+import urllib.request as rq      # 网络请求模块
+import ybc_camera as camera      # 照相机模块
+import ybc_face as face          # 照相机模块
+import ybc_food as food          # 食物识别模块
+import ybc_pinyin as pinyin      # 拼音转换模块
+import ybc_player as player      # 媒体播放模块
+import random                    # 模块（随机模块）
 
 
+# 定义功能
 function_gn = [
-    '我的网站',
+    '我的网址',
     '时间',
     '计算',
     '打开网站',
@@ -20,8 +22,10 @@ function_gn = [
     '拍照并人脸检测',
     '检测是什么食物',
     '汉字的拼音',
-    '播放媒体文件'
+    '播放媒体文件',
+    '随机整数'
 ]
+
 while True:
     op = box.buttonbox('是否使用',['是', '否'])
     if op == "是":
@@ -85,5 +89,10 @@ while True:
         elif function == '播放媒体文件':
             file = box.fileopenbox('请选择视频或音频文件')
             player.play(file)
+        elif function == '随机整数':
+            number_min = box.enterbox('最小值')
+            number_max = box.enterbox('最大值')
+            res = random.randint(number_min, number_max)
+            box.msgbox(res)
     elif (op == "否" or op == None):
         break
