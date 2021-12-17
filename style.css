@@ -1,9 +1,14 @@
 * {
     margin     : 0;
     padding    : 0;
+    box-sizing: border-box;
     font-family: Helvetica;
 }
 
+body{
+    width: 100vw;
+    height: 100vh;
+}
 .nav {
     height  : 35px;
     width   : 100vw;
@@ -11,18 +16,15 @@
     top     : 0;
     left    : 0;
     width   : 100vw;
-}
-
-a {
-    /* a标签去掉下划线 */
-    text-decoration: none;
-
-    /* 将字体颜色设为黑色 */
-    color: #000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin: auto;
 }
 
 main {
-    margin-top: 35px;
+    margin: 35px 12.5% 0;
+    width: 100%;
+    height: 100%;
 }
 
 p {
