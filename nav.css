@@ -1,12 +1,25 @@
 :root {
     --color     : #0f0;
-    --text-color: #000;
+    --text-color: #010;
 
     --color-: #0e0;
 
     --hover-color     : #0a0;
     --hover-color-    : #0b0;
-    --hover-text-color: #fff;
+    --hover-text-color: #efe;
+}
+
+@media(prefers-color-scheme: dark){
+    :root {
+        --color     : #070;
+        --text-color: #efe;
+    
+        --color-: #060;
+    
+        --hover-color     : #ada;
+        --hover-color-    : #aea;
+        --hover-text-color: #010;
+    }
 }
 
 * {
