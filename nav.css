@@ -1,24 +1,24 @@
 :root {
-    --color     : #0f0;
-    --text-color: #010;
+    --color     : rgba(255, 255, 255, .1) ;
+    --text-color: rgba(17, 17, 17, 1);
 
-    --color-: #0e0;
+    --color-: rgba(238, 238, 238, .25);
 
-    --hover-color     : #0a0;
-    --hover-color-    : #0b0;
-    --hover-text-color: #efe;
+    --hover-color     : rgba(170, 170, 170, .25);
+    --hover-color-    : rgba(187, 187, 187, .25);
+    --hover-text-color: rgba(17, 17, 17, 1);
 }
 
 @media(prefers-color-scheme: dark){
     :root {
-        --color     : #070;
-        --text-color: #efe;
+        --color     : rgba(119, 119, 119, .05);
+        --text-color: rgba(17, 17, 17, 1);
     
-        --color-: #060;
+        --color-: rgba(102, 102, 102, .25);
     
-        --hover-color     : #ada;
-        --hover-color-    : #aea;
-        --hover-text-color: #010;
+        --hover-color     : rgba(100, 100, 100, .25);
+        --hover-color-    : rgba(125, 125, 125, .25);
+        --hover-text-color: rgba(0, 15, 0, 1);
     }
 }
 
@@ -36,11 +36,13 @@ a {
     color: #000;
 }
 
+body{
+    width: 100vw;
+    background: var(--color);
+}
 nav {
-    position: fixed;
-    top     : 0;
-    left    : 0;
-    width   : 100vw;
+    width   : 75vw;
+    margin: auto;
 }
 
 nav>div {
@@ -86,12 +88,12 @@ li {
     color     : var(--text-color);
 
     /* 0.5秒的过度 */
-    transition: all 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 .nav-1>a {
     /* 0.5秒的过度 */
-    transition: all 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 .nav-1>.nav-2 {
