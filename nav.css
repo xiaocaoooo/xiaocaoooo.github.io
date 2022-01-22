@@ -1,5 +1,5 @@
 :root {
-    --color     : rgba(255, 255, 255, .1) ;
+    --color     : rgba(255, 255, 255, .1);
     --text-color: rgba(17, 17, 17, 1);
 
     --color-: rgba(238, 238, 238, .25);
@@ -9,13 +9,13 @@
     --hover-text-color: rgba(17, 17, 17, 1);
 }
 
-@media(prefers-color-scheme: dark){
+@media(prefers-color-scheme: dark) {
     :root {
         --color     : rgba(119, 119, 119, .05);
         --text-color: rgba(17, 17, 17, 1);
-    
+
         --color-: rgba(102, 102, 102, .25);
-    
+
         --hover-color     : rgba(100, 100, 100, .25);
         --hover-color-    : rgba(125, 125, 125, .25);
         --hover-text-color: rgba(0, 15, 0, 1);
@@ -23,9 +23,10 @@
 }
 
 * {
-    margin : 0;
-    padding: 0;
+    margin     : 0;
+    padding    : 0;
     font-family: Helvetica;
+    transition : all 0.5s ease-in-out;
 }
 
 a {
@@ -36,12 +37,13 @@ a {
     color: #000;
 }
 
-body{
-    width: 100vw;
+body {
+    width     : 100vw;
     background: var(--color);
 }
+
 nav {
-    width   : 75vw;
+    width : 75vw;
     margin: auto;
 }
 
