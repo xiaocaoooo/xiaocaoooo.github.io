@@ -1,14 +1,20 @@
+'''
+作者：小草o_o
+哔哩哔哩：https://space.bilibili.com/1487201054
+转载记得表明作者
+(这个没人会转载吧)
+'''
 # 导入模块
-import ybc_box as box            # 弹窗模块
 import time                      # 时间模块
-import ybc_browser as browser    # 浏览器模块
+import random                    # 模块（随机模块）
 import urllib.request as rq      # 网络请求模块
+import ybc_box as box            # 弹窗模块
+import ybc_browser as browser    # 浏览器模块
 import ybc_camera as camera      # 照相机模块
 import ybc_face as face          # 照相机模块
 import ybc_food as food          # 食物识别模块
 import ybc_pinyin as pinyin      # 拼音转换模块
 import ybc_player as player      # 媒体播放模块
-import random                    # 模块（随机模块）
 
 
 # 定义功能
