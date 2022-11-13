@@ -1,0 +1,5 @@
+{
+    "data":"<p>这里有我做的Python作品</p><p>只不过有些需要“猿编程”这款软件才可以运行(标星号(*)的)</p><a href=\"https://www.ybccode.com/download/ybc\" target=\"_blank\" class=\"ybc\">点我下载猿编程</a><p>下面是我做的Python作品</p><a href=\"./python/smart_assistant.py\" target=\"_blank\" class=\"works\">*智能助手</a><a href=\"./python/music_downlaod.pyw\" target=\"_blank\" class=\"works\">音乐下载</a>",
+    "style":".ybc {display:inline-block;width:auto;background:transparent;border:1px solid #557FFF;border-radius:50px;color:#557FFF;padding:5px;margin:5px;margin-left:10px;transition:all .5s ease-in-out;box-shadow:5px 5px 5px rgba(0, 0, 0, .25);}.ybc:hover {background:#557FFF;color:#fff;transform:translate(-3px, -3px);box-shadow:10px 10px 5px rgba(0, 0, 0, .25);}.works {display:inline-block;width:auto;background:transparent;border:1px solid #00AA00;border-radius:50px;color:#00AA00;padding:5px;margin:5px;margin-left:10px;margin-right:10px;transition:all .5s ease-in-out;box-shadow:5px 5px 5px rgba(0, 0, 0, .25);}.works:hover {background:#00AA00;color:#fff;transform:translate(-3px, -3px);box-shadow:10px 10px 5px rgba(0, 0, 0, .25);}",
+    "script":""
+}
