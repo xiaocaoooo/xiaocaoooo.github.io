@@ -7,91 +7,63 @@
 转载记得表明作者!!!
 转载记得表明作者!!!
 '''
-import tkinter as tk
-import tkinter.messagebox
-import music_downlaod as md
+import requests
+import json
+import os
 
 
-class main():
-    def __init__(self) -> None:
-        self.window = tk.Tk()
-        self.window.title('音乐下载')
-        # self.window.resizable(0, 0)
-        self.WIDTH = 750
-        self.HEIGHT = 900
-        screenwidth = self.window.winfo_screenwidth()
-        screenheight = self.window.winfo_screenheight()
-        size_geo = '%dx%d+%d+%d' % (self.WIDTH, self.HEIGHT,
-                                    (screenwidth-self.WIDTH)/2, (screenheight-self.HEIGHT)/2)
-        self.window.geometry(size_geo)
-        self.Control()
-        self.window.mainloop()
-
-    # 控件
-    def Control(self):
-        self.searchTitle = tk.Label(
-            self.window, text='请输入歌曲名称: ', font=('微软雅黑'))
-        self.searchTitle.pack()
-        self.searchInput = tk.Entry(self.window)
-        self.searchInput.pack()
-        self.searchButton = tk.Button(
-            self.window, text='搜索', command=self.Search)
-        self.searchButton.pack()
-        self.searchResultString = tk.StringVar()
-        self.searchResultString.set('搜索结果')
-        self.searchResult = tk.Label(
-            self.window, textvariable=self.searchResultString, font=('微软雅黑'))
-        self.searchResult.pack()
-
-    # 搜索
-    def Search(self):
-        # self.searchResultString.set(self.searchInput.get())
-        searchData = md.search(self.searchInput.get())
-        searchDataListStr = []
-        for data in searchData:
-            searchDataListStr.append(str(searchData.index(
-                data)+1) + '.' + data['name'] + '-' + data['artists'])
-        self.searchResultString.set('\n'.join(searchDataListStr))
-
-        self.downloadTitle = tk.Label(
-            self.window, text='请输入歌曲序号: ', font=('微软雅黑'))
-        self.downloadTitle.pack()
-        self.downloadInput = tk.Entry(self.window)
-        self.downloadInput.pack()
-        self.downloadButton = tk.Button(
-            self.window, text='下载', command=self.GetMusicData)
-        self.downloadButton.pack()
-
-    # 下载
-    def GetMusicData(self):
-            num = self.downloadInput.get()
-
-            searchData = md.search(self.searchInput.get())
-
-            if int(num) <= len(searchData):
-                music_data = searchData[int(num)-1]
-                if tkinter.messagebox.askyesno('', f'''确定音乐信息为:\n歌曲名: {music_data['name']}\n歌手: {music_data['artists']}'''):
-                    music = md.get_music(music_data['mid'])
-                    if music != None:
-                        path = './music/'+music_data['name'] + \
-                            ' - '+music_data['artists']+'.mp3'
-                        with open(path, 'wb') as f:
-                            f.write(music)
-                        tkinter.messagebox.showinfo('', '下载完成!')
-                        exit()
-                    else:
-                        tkinter.messagebox.showerror('', '下载失败!')
-                        while bool(tkinter.messagebox.askretrycancel('', '是否重新下载?')):
-                            music = md.get_music(music_data['mid'])
-                            if music != None:
-                                path = '.\\music\\'\
-                                    + music_data['name'] + ' - '+music_data['artists']+'.mp3'
-                                with open(path, 'wb') as f:
-                                    f.write(music)
-                                tkinter.messagebox.showinfo('', '下载完成!')
-                                exit()
-            else:
-                tkinter.messagebox.showwarning('', '输入有误!')
+def get(url):
+    # 发送请求
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+    res = requests.get(url, headers=headers)
+    # 判断是否请求成功
+    if res.status_code == 200:
+        # 设置编码
+        res.encoding = res.apparent_encoding
+        return res
+    else:
+        return None
 
 
-main()
+keywords = input('请输入搜索关键字:')
+search_data = json.loads(
+    get(f'http://cloud-music.pl-fe.cn/search?keywords={keywords}').text)['result']['songs']
+
+music_search = []
+for i in range(len(search_data)):
+    if len(search_data[i]['artists']) == 1:
+        music_search.append({
+            'name': search_data[i]['name'],
+            'artists': search_data[i]['artists'][0]['name'],
+            'mid': search_data[i]['id']
+        })
+    else:
+        music_search.append({
+            'name': search_data[i]['name'],
+            'artists': ' & '.join([j['name'] for j in search_data[i]['artists']]),
+            'mid': search_data[i]['id']
+        })
+
+for i in range(len(music_search)):
+    music_data = music_search[i]
+    print(str(i+1)+'.', music_data['name'], '-', music_data['artists'])
+
+num = input('请输入歌曲序号:')
+
+if int(num) <= len(music_search):
+    music_data = music_search[int(num)-1]
+    print('歌曲名:', music_data['name'])
+    print('歌手:', music_data['artists'])
+else:
+    print('输入有误!')
+
+music = get(
+    f'http://music.163.com/song/media/outer/url?id={music_data["mid"]}.mp3').content
+if music != None:
+    with open('.\\music\\'+music_data['name']+' - '+music_data['artists']+'.mp3', 'wb') as f:
+        f.write(music)
+    print('下载成功!')
+else:
+    print('下载失败!')
+os.system("pause")

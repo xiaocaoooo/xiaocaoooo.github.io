@@ -19,9 +19,15 @@
     font-family: Helvetica;
 }
 
+/* html{
+    width     : 100vw;}
+body{
+    width     : 100%;} */
+
+html,
 body {
-    width     : 100vw;
-    height    : 100vh;
+    width     : 100%;
+    min-height: 100vh;
     background: var(--color-fff);
 }
 
@@ -55,7 +61,7 @@ main {
     margin                    : 0;
     padding                   : 1vw;
     width                     : 75vw;
-    height                    : 100vh;
+    min-height                : 100vh;
     border                    : 3px solid transparent;
     border-left-color         : var(--color-eee);
     border-right-color        : var(--color-eee);

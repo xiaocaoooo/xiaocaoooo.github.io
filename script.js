@@ -18,13 +18,31 @@ var $_GET = (function () {
     }
 })();
 
+function download(filename, text) {
+    console.log(filename, text);
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
 
 get('main').innerHTML = `<p>1145141919810</p>`
+
+// var host=`https://xiaocaoooo.github.io`;
+// var host=`http://127.0.0.1:5500`;
+var host = document.location.href.toString().split("//")[0] + "//" + document.location.host.toString();
 
 
 if ($_GET.path == '/') {
     $.ajax({
-        url: `https://xiaocaoooo.github.io/data/home.json`,
+        url: `${host}/data/home.json`,
         type: 'get',
         dataType: 'json',
         success: function (res) {
@@ -35,7 +53,7 @@ if ($_GET.path == '/') {
     });
 } else {
     $.ajax({
-        url: `https://xiaocaoooo.github.io/data${$_GET.path}.json`,
+        url: `${host}/data${$_GET.path}.json`,
         type: 'get',
         dataType: 'json',
         success: function (res) {
