@@ -1,9 +1,13 @@
 var get = function (selector) {
     return document.querySelector(selector);
 };
+
 var i;
+
+var host = document.location.href.toString().split("//")[0] + "//" + document.location.host.toString();
+
 $.ajax({
-    url: `https://xiaocaoooo.github.io/nav.json`,
+    url: `${host}/nav.json`,
     type: 'get',
     dataType: 'json',
     success: function (res) {
