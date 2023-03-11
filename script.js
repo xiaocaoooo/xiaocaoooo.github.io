@@ -33,14 +33,14 @@ function download(filename, text) {
 }
 
 
-get('main').innerHTML = `<p>1145141919810</p>`
+// get('main').innerHTML = `<p>1145141919810</p>`
 
 // var host=`https://xiaocaoooo.github.io`;
 // var host=`http://127.0.0.1:5500`;
 var host = document.location.href.toString().split("//")[0] + "//" + document.location.host.toString();
 
 
-if ($_GET.path == '/') {
+if ($_GET.path == '/' || $_GET.path==undefined) {
     $.ajax({
         url: `${host}/data/home.json`,
         type: 'get',

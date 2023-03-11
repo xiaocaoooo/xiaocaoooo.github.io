@@ -1,5 +1,5 @@
 {
-    "data":"<p>1145141919810</p>",
+    "data":"<div id=\"app\"></div>",
     "style":"",
-    "script":""
+    "script":"var date=new Date();var $app=document.querySelector(`#app`);var text;setInterval(()=>{date=new Date();console.log(`${date.toLocaleString()}`);$app.innerText=`${date.toLocaleString()}`},100);"
 }
