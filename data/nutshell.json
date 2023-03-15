@@ -1,0 +1,5 @@
+{
+    "data":"<div id=\"app\"></div>api: <a href=\"https://hitokoto.cn/\" target=\"_blank\">https://hitokoto.cn/</a>",
+    "style":"",
+    "script":"$.ajax({url:`https://v1.hitokoto.cn/?c=i`,type:'get',dataType:'json',success:function(data){console.log(data);res=`「${data.hitokoto}」\n—— ${data.from_who} 《${data.from}》`;console.log(res);document.querySelector(\"#app\").innerText=res;}});"
+}
