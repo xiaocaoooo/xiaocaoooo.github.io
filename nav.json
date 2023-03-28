@@ -5,6 +5,7 @@
         {"title":"作文", "link":"/?path=/composition"},
         {"title":"数学公式", "link":"/?path=/mathFormula"},
         {"title":"一言", "link":"/?path=/nutshell"},
+        {"title":"数独", "link":"/?path=/sudoku"},
         {"title":"我的哔哩哔哩账号1", "link":"https://space.bilibili.com/1487201054/"},
         {"title":"我的哔哩哔哩账号2", "link":"https://space.bilibili.com/1886348413/"}
     ]
