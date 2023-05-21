@@ -31,6 +31,10 @@ body {
     background: var(--color-fff);
 }
 
+li{
+    text-indent: 2em;
+}
+
 .nav {
     height                 : 35px;
     width                  : 100vw;
