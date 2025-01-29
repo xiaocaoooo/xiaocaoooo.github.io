@@ -1,5 +1,15 @@
 {
-    "date": "2025-28-2025 22:51",
-    "content": "Sankaplayer 1.0.0 is released!\n以上为ai的文本生成，请忽略\n20250128",
-    "author": "「酸化カルシウム」"
+    "length": 2,
+    "data": [
+        {
+            "date": "2025-01-29 09:00",
+            "content": "这是第二条公告，请注意！\n20250129",
+            "author": "「酸化カルシウム」"
+        },
+        {
+            "date": "2025-01-28 22:51",
+            "content": "Sankaplayer 1.0.0 is released!\n以上为ai的文本生成，请忽略\n20250128",
+            "author": "「酸化カルシウム」"
+        }
+    ]
 }
