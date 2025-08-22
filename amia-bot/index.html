@@ -10,55 +10,116 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            line-height: 1.6;
         }
-        
+
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-        
+
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
+            position: relative;
         }
-        
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
             font-weight: 300;
+            position: relative;
+            z-index: 1;
         }
-        
+
         .header p {
             opacity: 0.9;
             font-size: 1.1em;
+            position: relative;
+            z-index: 1;
         }
-        
-        .content {
-            padding: 40px 30px;
-        }
-        
-        .category {
-            margin-bottom: 35px;
+
+        .nav-tabs {
+            display: flex;
             background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            border-left: 5px solid #667eea;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+            scrollbar-width: thin;
         }
-        
-        .category-title {
-            font-size: 1.5em;
+
+        .nav-tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: white;
+        }
+
+        .nav-tab:hover {
+            color: #667eea;
+            background: #f0f0f0;
+        }
+
+        .content {
+            padding: 0;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px 30px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
             color: #333;
             margin-bottom: 20px;
             font-weight: 600;
@@ -66,90 +127,140 @@
             align-items: center;
             gap: 10px;
         }
-        
-        .command-list {
+
+        .command-grid {
             display: grid;
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
-        
-        .command-item {
-            background: white;
-            padding: 18px 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+        .command-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
             transition: all 0.3s ease;
-            border-left: 3px solid #667eea;
         }
-        
-        .command-item:hover {
+
+        .command-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
+
         .command-name {
             font-weight: 600;
             color: #667eea;
-            font-family: 'Consolas', 'Monaco', monospace;
             font-size: 1.1em;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
-        
+
         .command-desc {
             color: #555;
+            margin-bottom: 10px;
             font-size: 0.95em;
-            line-height: 1.6;
         }
-        
+
         .command-params {
-            color: #888;
+            color: #666;
             font-size: 0.85em;
-            margin-top: 5px;
-            padding-left: 15px;
-            border-left: 2px solid #eee;
+            background: #e9ecef;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 10px;
         }
-        
-        .auto-features {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 35px;
+
+        .command-examples {
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 0.85em;
         }
-        
-        .auto-features h3 {
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-        
-        .feature-grid {
+
+        .feature-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
-            margin-top: 15px;
         }
-        
+
         .feature-item {
-            background: rgba(255,255,255,0.1);
-            padding: 12px 15px;
+            background: white;
+            padding: 15px;
             border-radius: 8px;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 3px solid #28a745;
         }
-        
-        .admin-section {
+
+        .tips-section {
+            background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%);
+            border: 1px solid #b3d9ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .tips-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .warning-section {
             background: #fff3cd;
             border: 1px solid #ffeaa7;
             border-radius: 15px;
             padding: 25px;
-            margin-bottom: 35px;
+            margin: 20px 0;
         }
-        
-        .admin-title {
+
+        .warning-title {
             color: #856404;
-            font-size: 1.3em;
+            font-size: 1.2em;
             margin-bottom: 15px;
             font-weight: 600;
         }
-        
+
+        .quick-start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .quick-start h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .quick-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .quick-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .quick-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
         .footer {
             background: #f8f9fa;
             padding: 30px;
@@ -157,47 +268,95 @@
             color: #666;
             border-top: 1px solid #eee;
         }
-        
-        .tips {
-            background: #e7f3ff;
-            border: 1px solid #b3d9ff;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
         }
-        
-        @media (max-width: 600px) {
+
+        .contact-link {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #667eea;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
             .container {
                 margin: 10px;
                 border-radius: 15px;
             }
-            
+
             .header {
                 padding: 30px 20px;
             }
-            
+
             .header h1 {
                 font-size: 2em;
             }
-            
-            .content {
+
+            .tab-content {
                 padding: 25px 20px;
             }
-            
-            .category {
-                padding: 20px;
-            }
-            
-            .feature-grid {
+
+            .command-grid {
                 grid-template-columns: 1fr;
             }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                text-align: left;
+                border-bottom: none;
+                border-right: 3px solid transparent;
+            }
+
+            .nav-tab.active {
+                border-right-color: #667eea;
+            }
+        }
+
+        .auto-features {
+            background: #e8f5e8;
+            border: 1px solid #28a745;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .role-item {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.85em;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🤖 Amia Bot 完整使用指南</h1>
+            <h1>Amia Bot 完整使用指南</h1>
             <p>智能AI助手，为您提供全方位的聊天、娱乐和管理体验</p>
             <div style="margin-top: 20px;">
                 <a href="https://qm.qq.com/q/kWarbQkuTm" target="_blank" rel="noopener noreferrer">
@@ -205,210 +364,596 @@
                 </a>
             </div>
         </div>
-        
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('overview')">📋 概览</button>
+            <button class="nav-tab" onclick="showTab('ai')">🤖 AI对话</button>
+            <button class="nav-tab" onclick="showTab('music')">🎵 音乐</button>
+            <button class="nav-tab" onclick="showTab('bilibili')">📺 B站</button>
+            <button class="nav-tab" onclick="showTab('entertainment')">🎮 娱乐</button>
+            <button class="nav-tab" onclick="showTab('query')">🔍 查询</button>
+            <button class="nav-tab" onclick="showTab('voice')">🔊 语音</button>
+            <button class="nav-tab" onclick="showTab('management')">👥 管理</button>
+            <button class="nav-tab" onclick="showTab('tips')">💡 技巧</button>
+        </div>
+
         <div class="content">
-            <!-- 基础命令 -->
-            <div class="category">
-                <h2 class="category-title">📋 基础命令</h2>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/help</div>
-                        <div class="command-desc">显示完整的帮助文档</div>
+            <!-- 概览标签页 -->
+            <div class="tab-content active" id="overview">
+                <div class="quick-start">
+                    <h3>🚀 快速开始</h3>
+                    <p>Amia Bot 是一个功能丰富的QQ机器人，提供AI对话、音乐播放、B站解析等多种服务</p>
+                    <div class="quick-buttons">
+                        <a href="#" class="quick-btn" onclick="showTab('ai')">开始AI对话</a>
+                        <a href="#" class="quick-btn" onclick="showTab('music')">点歌功能</a>
+                        <a href="#" class="quick-btn" onclick="showTab('entertainment')">表情包生成</a>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">🎯 核心功能一览</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <strong>🤖 AI智能对话</strong><br>
+                            支持上下文记忆、好感度系统、表情包回复
+                        </div>
+                        <div class="feature-item">
+                            <strong>🎵 网易云音乐</strong><br>
+                            搜索、播放、下载歌曲，支持多种格式
+                        </div>
+                        <div class="feature-item">
+                            <strong>📺 B站视频解析</strong><br>
+                            自动识别链接，解析视频信息和下载
+                        </div>
+                        <div class="feature-item">
+                            <strong>🎭 PJSK表情包</strong><br>
+                            27个角色可选，支持自定义文字和样式
+                        </div>
+                        <div class="feature-item">
+                            <strong>🔊 文字转语音</strong><br>
+                            将文字转为语音，支持回复消息转换
+                        </div>
+                        <div class="feature-item">
+                            <strong>🔍 用户信息查询</strong><br>
+                            查看个人、群聊、活跃度等信息
+                        </div>
+                    </div>
+                </div>
+
+                <div class="auto-features">
+                    <h3>🔄 自动触发功能</h3>
+                    <p>无需手动输入命令，Bot会自动识别并处理以下内容：</p>
+                    <div class="feature-list">
+                        <div class="feature-item">• B站链接自动解析（BV号、AV号、短链接）</div>
+                        <div class="feature-item">• B站小程序卡片自动解析</div>
+                        <div class="feature-item">• GitHub链接自动解析</div>
+                        <div class="feature-item">• 感谢用语自动回复</div>
+                        <div class="feature-item">• 新成员入群欢迎消息</div>
+                        <div class="feature-item">• 拍一拍触发随机语音回复</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 核心功能 -->
-            <div class="category">
-                <h2 class="category-title">🎯 核心功能</h2>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/ai &lt;文本&gt;</div>
-                        <div class="command-desc">单次AI对话，输入任意文本获取智能回复</div>
-                        <div class="command-params">参数: &lt;文本&gt; - 您想询问的任何内容</div>
+            <!-- AI对话标签页 -->
+            <div class="tab-content" id="ai">
+                <div class="section">
+                    <h2 class="section-title">🤖 AI对话功能</h2>
+                    <div class="command-grid">
+                        <div class="command-card">
+                            <div class="command-name">/amia &lt;文本&gt; 或 /chat &lt;文本&gt;</div>
+                            <div class="command-desc">与Amia进行连续对话聊天，支持上下文理解和记忆</div>
+                            <div class="command-params">参数：&lt;文本&gt; - 聊天内容</div>
+                            <div class="command-examples">示例：/amia 今天天气怎么样？</div>
+                        </div>
+                        <div class="command-card">
+                            <div class="command-name">/ai &lt;文本&gt;</div>
+                            <div class="command-desc">单次AI对话，基于AI的通用问答，支持各种知识问答</div>
+                            <div class="command-params">参数：&lt;文本&gt; - 您想询问的任何内容</div>
+                            <div class="command-examples">示例：/ai 什么是量子力学？</div>
+                        </div>
                     </div>
-                    <div class="command-item">
-                        <div class="command-name">/chat &lt;文本&gt; 或 /Amia &lt;文本&gt;</div>
-                        <div class="command-desc">与Amia进行连续对话聊天，支持上下文理解</div>
-                        <div class="command-params">参数: &lt;文本&gt; - 聊天内容</div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">💡 AI对话特色功能</div>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li><strong>好感度系统：</strong>每次对话会增加或减少好感度，影响AI回复风格</li>
+                        <li><strong>记忆功能：</strong>AI会记住与你的对话历史，提供个性化回复</li>
+                        <li><strong>表情包回复：</strong>自动生成pjsk风格表情包配合文字回复</li>
+                        <li><strong>语音回复：</strong>部分回复会附带语音消息，增强互动体验</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 音乐功能标签页 -->
+            <div class="tab-content" id="music">
+                <div class="section">
+                    <h2 class="section-title">🎵 网易云音乐功能</h2>
+                    <div class="command-grid">
+                        <div class="command-card">
+                            <div class="command-name">/music &lt;关键词&gt;</div>
+                            <div class="command-desc">通过网易云音乐搜索并播放指定歌曲</div>
+                            <div class="command-params">参数：&lt;关键词&gt; - 歌曲名、歌手名或歌词片段</div>
+                            <div class="command-examples">示例：/music 告白气球</div>
+                        </div>
+                        <div class="command-card">
+                            <div class="command-name">/music id &lt;歌曲ID&gt;</div>
+                            <div class="command-desc">播放指定ID的歌曲，搜索结果中会显示歌曲ID</div>
+                            <div class="command-examples">示例：/music id 1234567</div>
+                        </div>
+                        <div class="command-card">
+                            <div class="command-name">/music down &lt;歌曲ID&gt;</div>
+                            <div class="command-desc">下载指定歌曲为文件，可保存到本地</div>
+                            <div class="command-examples">示例：/music down 1234567</div>
+                        </div>
+                        <div class="command-card">
+                            <div class="command-name">/网易云 &lt;关键词&gt;</div>
+                            <div class="command-desc">/music的别名命令，功能完全相同</div>
+                        </div>
+                        <div class="command-card">
+                            <div class="command-name">/点歌 &lt;关键词&gt;</div>
+                            <div class="command-desc">中文别名命令，更符合用户习惯</div>
+                        </div>
                     </div>
-                    <div class="command-item">
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">🎯 音乐功能使用技巧</div>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>使用 <code>/music id [歌曲ID]</code> 可以直接播放指定歌曲，避免搜索结果过多</li>
+                        <li>使用 <code>/music down [歌曲ID]</code> 可以下载歌曲文件，支持离线收听</li>
+                        <li>搜索结果会显示歌曲ID，方便后续精确播放</li>
+                        <li>支持模糊搜索，输入歌词片段也能找到对应歌曲</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- B站功能标签页 -->
+            <div class="tab-content" id="bilibili">
+                <div class="section">
+                    <h2 class="section-title">📺 B站功能</h2>
+                    
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">🔍 视频解析（自动触发）</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">自动识别</div>
+                                <div class="command-desc">自动识别B站链接并进行解析，无需手动命令</div>
+                                <div class="command-params">支持格式：BV号、AV号、B23短链接、小程序分享</div>
+                            </div>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item">• 视频标题和作者信息</div>
+                            <div class="feature-item">• 播放量、点赞、收藏等统计数据</div>
+                            <div class="feature-item">• 视频封面高清图片</div>
+                            <div class="feature-item">• 视频文件下载（可选）</div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">🔎 视频搜索</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">/bsv &lt;关键词&gt;</div>
+                                <div class="command-desc">B站视频搜索，快速查找Bilibili视频内容</div>
+                                <div class="command-params">参数：&lt;关键词&gt; - 视频标题、UP主或内容关键词</div>
+                                <div class="command-examples">示例：/bsv 原神手书</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">📱 B站功能使用技巧</div>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>直接发送视频链接即可自动解析，支持BV号、AV号、b23短链接等多种格式</li>
+                        <li>解析后会自动下载视频文件，可选择保存到本地</li>
+                        <li>支持小程序分享卡片自动识别</li>
+                        <li>视频搜索功能可以快速找到相关内容</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 娱乐功能标签页 -->
+            <div class="tab-content" id="entertainment">
+                <div class="section">
+                    <h2 class="section-title">🎮 娱乐功能</h2>
+                    
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">🎭 PJSK表情包生成</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">/pjsk &lt;文本&gt; [角色] [参数]</div>
+                                <div class="command-desc">生成PJSK风格的表情包，支持27个角色和多种自定义参数</div>
+                                <div class="command-params">参数：&lt;文本&gt;必填，[角色]可选，[参数]可选</div>
+                                <div class="command-examples">示例：/pjsk 你好世界 miku</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 20px 0;">
+                            <strong>可用角色（27个）：</strong>
+                            <div class="role-grid">
+                                <div class="role-item">airi</div><div class="role-item">akito</div><div class="role-item">an</div>
+                                <div class="role-item">emu</div><div class="role-item">ena</div><div class="role-item">haruka</div>
+                                <div class="role-item">honami</div><div class="role-item">ichika</div><div class="role-item">kaito</div>
+                                <div class="role-item">kanade</div><div class="role-item">kohane</div><div class="role-item">len</div>
+                                <div class="role-item">luka</div><div class="role-item">mafuyu</div><div class="role-item">meiko</div>
+                                <div class="role-item">miku</div><div class="role-item">minori</div><div class="role-item">mizuki</div>
+                                <div class="role-item">nene</div><div class="role-item">rin</div><div class="role-item">rui</div>
+                                <div class="role-item">saki</div><div class="role-item">shiho</div><div class="role-item">shizuku</div>
+                                <div class="role-item">touya</div><div class="role-item">tsukasa</div>
+                            </div>
+                        </div>
+
+                        <div class="command-examples">
+                            <strong>高级参数：</strong><br>
+                            • fsize=数字 - 字体大小 (25-99)<br>
+                            • pos=x,y - 文字位置 (0-999)<br>
+                            • lean=角度 - 旋转角度 (0-359)<br>
+                            • clr=r,g,b - 文字颜色RGB值<br>
+                            • font=1/2 - 字体选择<br>
+                            • esize=数字 - 描边大小 (1-7)
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">📚 随机漫画</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">/comic</div>
+                                <div class="command-desc">随机发送一张"啤酒烧烤"系列漫画图片</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
                         <div class="command-name">/voice</div>
                         <div class="command-desc">随机发送一条Amia的语音消息，增加聊天趣味性</div>
                     </div>
-                    <div class="command-item">
-                        <div class="command-name">/comic</div>
-                        <div class="command-desc">随机发送"啤酒烧烤"系列漫画，提供娱乐内容</div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">🎯 娱乐功能使用技巧</div>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>记不住角色名可以使用随机: <code>/pjsk 你好</code></li>
+                        <li>使用 <code>&br</code> 可以换行: <code>/pjsk 你好&br世界</code></li>
+                        <li>使用 <code>&sp</code> 可以空格: <code>/pjsk 你好&sp世界</code></li>
+                        <li>漫画功能会随机发送不同风格的搞笑漫画</li>
+                        <li>AI绘图支持详细描述，可以指定风格、场景、角色等</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 查询功能标签页 -->
+            <div class="tab-content" id="query">
+                <div class="section">
+                    <h2 class="section-title">🔍 查询统计功能</h2>
+                    
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">👤 个人信息查询</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">/me</div>
+                                <div class="command-desc">查看自己的用户信息、等级、积分等详细数据</div>
+                            </div>
+                            <div class="command-card">
+                                <div class="command-name">/query &lt;QQ号|@用户&gt;</div>
+                                <div class="command-desc">查询指定用户的详细信息，包括等级、积分等</div>
+                                <div class="command-params">参数：QQ号码或直接@提及用户</div>
+                            </div>
+                            <div class="command-card">
+                                <div class="command-name">/you</div>
+                                <div class="command-desc">查看Bot(Amia)的详细信息、版本、状态等</div>
+                            </div>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item">• QQ头像和昵称</div>
+                            <div class="feature-item">• QQ等级和Q龄</div>
+                            <div class="feature-item">• 性别、年龄、地区</div>
+                            <div class="feature-item">• 个性签名</div>
+                            <div class="feature-item">• 群内权限和入群时间</div>
+                        </div>
                     </div>
-                    <div class="command-item">
-                        <div class="command-name">/pjsk 或 /sticker</div>
-                        <div class="command-desc">生成"啤酒烧烤"主题的表情包，支持自定义文字</div>
+
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">👥 群信息查询</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">/group</div>
+                                <div class="command-desc">查看当前群聊的详细信息、成员统计等</div>
+                            </div>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item">• 群名称和群号</div>
+                            <div class="feature-item">• 成员数量和容量</div>
+                            <div class="feature-item">• 创建时间</div>
+                            <div class="feature-item">• 群公告和入群问题</div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">🏆 活跃度排行</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">/rank</div>
+                                <div class="command-desc">显示群内活跃度排行，基于消息数量统计</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 音乐功能 -->
-            <div class="category">
-                <h2 class="category-title">🎵 音乐功能</h2>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/music &lt;关键词&gt;</div>
-                        <div class="command-desc">通过网易云音乐搜索并播放指定歌曲</div>
-                        <div class="command-params">参数: &lt;关键词&gt; - 歌曲名、歌手名或歌词片段</div>
+            <!-- 语音功能标签页 -->
+            <div class="tab-content" id="voice">
+                <div class="section">
+                    <h2 class="section-title">🔊 语音功能</h2>
+                    <div class="command-grid">
+                        <div class="command-card">
+                            <div class="command-name">/tts &lt;文本&gt;</div>
+                            <div class="command-desc">将输入的文字转换为语音朗读，支持多种音色</div>
+                            <div class="command-params">参数：&lt;文本&gt; - 需要朗读的文字内容</div>
+                            <div class="command-examples">示例：/tts 你好，这是一个测试语音</div>
+                        </div>
+                        <div class="command-card">
+                            <div class="command-name">[回复消息]/tts</div>
+                            <div class="command-desc">朗读引用或回复的文字内容，便捷操作</div>
+                            <div class="command-params">使用：先回复某条消息，然后发送/tts命令</div>
+                        </div>
                     </div>
-                    <div class="command-item">
-                        <div class="command-name">/网易云 &lt;关键词&gt;</div>
-                        <div class="command-desc">同上，/music的别名命令</div>
-                    </div>
-                    <div class="command-item">
-                        <div class="command-name">/点歌 &lt;关键词&gt;</div>
-                        <div class="command-desc">同上，中文别名命令，更符合用户习惯</div>
-                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">🎙️ 语音功能特色</div>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>支持多种音色选择，提供自然流畅的语音效果</li>
+                        <li>可以朗读任意文字内容，包括中文和英文</li>
+                        <li>支持回复消息进行语音转换，操作便捷</li>
+                        <li>语音质量清晰，适合群聊互动使用</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- 查询功能 -->
-            <div class="category">
-                <h2 class="category-title">🔍 查询功能</h2>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/query &lt;QQ号|@用户&gt;</div>
-                        <div class="command-desc">查询指定用户的详细信息，包括等级、积分等</div>
-                        <div class="command-params">参数: QQ号码或直接@提及用户</div>
+            <!-- 群管理标签页 -->
+            <div class="tab-content" id="management">
+                <div class="section">
+                    <h2 class="section-title">👥 群管理功能</h2>
+                    
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">❤️ 互动功能</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">/like 或 /赞我</div>
+                                <div class="command-desc">给主页点赞支持，增加Bot的活跃度</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="command-item">
-                        <div class="command-name">/me</div>
-                        <div class="command-desc">查看自己的用户信息、等级、积分等详细数据</div>
+
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">🎯 拍一拍功能</h3>
+                        <div class="command-grid">
+                            <div class="command-card">
+                                <div class="command-name">拍一拍触发</div>
+                                <div class="command-desc">双击机器人头像触发随机语音回复，增加群聊趣味性</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="command-item">
-                        <div class="command-name">/you</div>
-                        <div class="command-desc">查看Bot(Amia)的详细信息、版本、状态等</div>
-                    </div>
-                    <div class="command-item">
-                        <div class="command-name">/group</div>
-                        <div class="command-desc">查看当前群聊的详细信息、成员统计等</div>
-                    </div>
+                </div>
+
+                <div class="warning-section">
+                    <div class="warning-title">⚠️ 注意事项</div>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li><strong>频率限制：</strong>部分功能有使用频率限制，避免刷屏</li>
+                        <li><strong>文件大小：</strong>大文件下载可能需要较长时间</li>
+                        <li><strong>网络依赖：</strong>在线功能需要良好的网络连接</li>
+                        <li><strong>权限要求：</strong>部分功能需要管理员权限</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- 语音功能 -->
-            <div class="category">
-                <h2 class="category-title">🗣️ 语音功能</h2>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/tts &lt;文本&gt;</div>
-                        <div class="command-desc">将输入的文字转换为语音朗读，支持多种音色</div>
-                        <div class="command-params">参数: &lt;文本&gt; - 需要朗读的文字内容</div>
-                    </div>
-                    <div class="command-item">
-                        <div class="command-name">[回复消息]/tts</div>
-                        <div class="command-desc">朗读引用或回复的文字内容，便捷操作</div>
-                        <div class="command-params">使用: 先回复某条消息，然后发送/tts命令</div>
-                    </div>
-                </div>
-            </div>
+            <!-- 使用技巧标签页 -->
+            <div class="tab-content" id="tips">
+                <div class="section">
+                    <h2 class="section-title">💡 使用技巧与故障排除</h2>
+                    
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">🎯 高效使用建议</h3>
+                        <div class="tips-section">
+                            <div class="tips-title">音乐功能技巧</div>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>使用 <code>/music id [歌曲ID]</code> 可以直接播放指定歌曲</li>
+                                <li>使用 <code>/music down [歌曲ID]</code> 可以下载歌曲文件</li>
+                                <li>搜索结果会显示歌曲ID，方便后续精确播放</li>
+                            </ul>
+                        </div>
 
-            <!-- 互动功能 -->
-            <div class="category">
-                <h2 class="category-title">👍 互动功能</h2>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/like 或 /赞我</div>
-                        <div class="command-desc">给主页点赞支持，增加Bot的活跃度</div>
-                    </div>
-                    <div class="command-item">
-                        <div class="command-name">/rank</div>
-                        <div class="command-desc">查看排行榜信息，包括活跃度、积分等排名</div>
-                    </div>
-                </div>
-            </div>
+                        <div class="tips-section">
+                            <div class="tips-title">AI对话技巧</div>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>多和Amia聊天可以提高好感度，影响回复风格</li>
+                                <li>可以使用 <code>@机器人 你好</code> 来触发打招呼</li>
+                                <li>连续对话会保持上下文记忆</li>
+                            </ul>
+                        </div>
 
-            <!-- 工具功能 -->
-            <div class="category">
-                <h2 class="category-title">⏰ 工具功能</h2>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/time [时间戳]</div>
-                        <div class="command-desc">将时间戳转换为可读的时间格式，支持当前时间</div>
-                        <div class="command-params">参数: [时间戳] - 可选，Unix时间戳格式</div>
+                        <div class="tips-section">
+                            <div class="tips-title">PJSK表情包技巧</div>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>记不住角色名可以使用随机: <code>/pjsk 你好</code></li>
+                                <li>使用 <code>&br</code> 可以换行: <code>/pjsk 你好&br世界</code></li>
+                                <li>使用 <code>&sp</code> 可以空格: <code>/pjsk 你好&sp世界</code></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="command-item">
-                        <div class="command-name">/test</div>
-                        <div class="command-desc">测试命令，检查Bot运行状态和响应时间</div>
-                    </div>
-                    <div class="command-item">
-                        <div class="command-name">/resolve</div>
-                        <div class="command-desc">解析功能，支持多种格式的内容解析</div>
-                    </div>
-                    <div class="command-item">
-                        <div class="command-name">/stat</div>
-                        <div class="command-desc">查看Bot的统计信息，包括使用次数、运行时长等</div>
-                    </div>
-                    <div class="command-item">
-                        <div class="command-name">/bsv &lt;关键词&gt;</div>
-                        <div class="command-desc">B站视频搜索，快速查找Bilibili视频内容</div>
-                        <div class="command-params">参数: &lt;关键词&gt; - 视频标题、UP主或内容关键词</div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Haruki功能 -->
-            <div class="category">
-                <h2 class="category-title">🤖 Haruki功能</h2>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/haruki &lt;命令&gt;</div>
-                        <div class="command-desc">调用Haruki的特殊功能模块，扩展Bot能力</div>
-                        <div class="command-params">参数: &lt;命令&gt; - Haruki支持的各种功能命令</div>
-                    </div>
-                </div>
-            </div>
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">🔧 故障排除</h3>
+                        <div class="warning-section">
+                            <div class="warning-title">常见问题解决</div>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li><strong>命令无响应：</strong>检查网络连接和机器人状态</li>
+                                <li><strong>下载失败：</strong>检查存储空间和网络权限</li>
+                                <li><strong>AI回复异常：</strong>尝试重新发送命令</li>
+                                <li><strong>图片生成失败：</strong>检查描述内容是否合适</li>
+                            </ul>
+                        </div>
 
-            <!-- 自动触发功能 -->
-            <div class="auto-features">
-                <h3>🔄 自动触发功能</h3>
-                <p>无需手动输入命令，Bot会自动识别并处理以下内容：</p>
-                <div class="feature-grid">
-                    <div class="feature-item">• B站链接自动解析</div>
-                    <div class="feature-item">• B站小程序自动解析</div>
-                    <div class="feature-item">• BV号自动解析</div>
-                    <div class="feature-item">• AV号自动解析</div>
-                    <div class="feature-item">• GitHub链接自动解析</div>
-                    <div class="feature-item">• 感谢用语自动回复</div>
-                </div>
-            </div>
-
-            <!-- 管理员命令 -->
-            <div class="admin-section">
-                <div class="admin-title">⚙️ 管理员命令</div>
-                <div class="command-list">
-                    <div class="command-item">
-                        <div class="command-name">/delete &lt;秒数&gt;</div>
-                        <div class="command-desc">删除指定时间内的Bot回复消息，保持群聊整洁</div>
-                        <div class="command-params">参数: &lt;秒数&gt; - 删除多少秒内的消息</div>
+                        <div class="warning-section">
+                            <div class="warning-title">联系支持</div>
+                            <p>如遇到问题，可以通过以下方式获取帮助：</p>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>在群内询问其他用户</li>
+                                <li>查看机器人状态: <code>/stat</code></li>
+                                <li>联系机器人管理员</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="command-item">
-                        <div class="command-name">/reboot 或 /reload amia</div>
-                        <div class="command-desc">重启机器人，重新加载配置和功能模块</div>
+
+                    <div class="section">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">📋 命令速查表</h3>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <thead style="background: #667eea; color: white;">
+                                    <tr>
+                                        <th style="padding: 12px; text-align: left;">功能类别</th>
+                                        <th style="padding: 12px; text-align: left;">命令</th>
+                                        <th style="padding: 12px; text-align: left;">示例</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">音乐</td>
+                                        <td style="padding: 12px;">/music</td>
+                                        <td style="padding: 12px;">/music 告白气球</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">AI对话</td>
+                                        <td style="padding: 12px;">/amia</td>
+                                        <td style="padding: 12px;">/amia 你好</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">AI问答</td>
+                                        <td style="padding: 12px;">/ai</td>
+                                        <td style="padding: 12px;">/ai 什么是AI</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">B站解析</td>
+                                        <td style="padding: 12px;">自动识别</td>
+                                        <td style="padding: 12px;">发送BV号或链接</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">视频搜索</td>
+                                        <td style="padding: 12px;">/bsv</td>
+                                        <td style="padding: 12px;">/bsv 原神</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">表情包</td>
+                                        <td style="padding: 12px;">/pjsk</td>
+                                        <td style="padding: 12px;">/pjsk 你好 miku</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">漫画</td>
+                                        <td style="padding: 12px;">/comic</td>
+                                        <td style="padding: 12px;">/comic</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">查询用户</td>
+                                        <td style="padding: 12px;">/me</td>
+                                        <td style="padding: 12px;">/me</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">查询群</td>
+                                        <td style="padding: 12px;">/group</td>
+                                        <td style="padding: 12px;">/group</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">排行榜</td>
+                                        <td style="padding: 12px;">/rank</td>
+                                        <td style="padding: 12px;">/rank</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">语音合成</td>
+                                        <td style="padding: 12px;">/tts</td>
+                                        <td style="padding: 12px;">/tts 测试语音</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px;">点赞</td>
+                                        <td style="padding: 12px;">/like</td>
+                                        <td style="padding: 12px;">/like</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="footer">
-            <p><strong>💡 使用提示：</strong></p>
-            <p>• 直接输入命令即可使用对应功能</p>
-            <p>• 带&lt;&gt;的参数为必填，带[]的参数为可选</p>
-            <p>• 部分命令支持多种格式和别名，使用更灵活</p>
-            
-            <div class="tips">
-                <strong>🎯 快速开始：</strong> 试试发送 <code>/ai 你好</code> 开始与Amia对话，或使用 <code>/music 晴天</code> 点一首歌！
+            <p><strong>📞 联系方式与支持</strong></p>
+            <div class="contact-info">
+                <a href="https://xiaocaoooo.github.io/amia-bot/" class="contact-link" target="_blank">项目主页</a>
+                <a href="https://qm.qq.com/q/kWarbQkuTm" class="contact-link" target="_blank">QQ群: 1032106495</a>
+                <a href="#" class="contact-link" onclick="showTab('tips')">故障排除</a>
             </div>
-            
             <p style="margin-top: 20px; font-style: italic;">
-                🤖 Amia Bot - 您的智能AI助手，让每一次聊天都充满乐趣！
+                Amia Bot - 您的智能AI助手，让每一次聊天都充满乐趣！
             </p>
         </div>
     </div>
+
+    <script>
+        function showTab(tabName) {
+            // 隐藏所有标签页内容
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 移除所有标签的激活状态
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // 显示选中的标签页内容
+            document.getElementById(tabName).classList.add('active');
+            
+            // 激活对应的标签按钮
+            event.target.classList.add('active');
+
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加键盘导航支持
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey || e.metaKey) {
+                    const tabs = ['overview', 'ai', 'music', 'bilibili', 'entertainment', 'query', 'voice', 'management', 'tips'];
+                    const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+                    const index = numbers.indexOf(e.key);
+                    if (index !== -1) {
+                        e.preventDefault();
+                        showTab(tabs[index]);
+                        const tabButton = document.querySelector(`[onclick="showTab('${tabs[index]}')"]`);
+                        tabButton.classList.add('active');
+                    }
+                }
+            });
+
+            // 添加平滑滚动效果
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
