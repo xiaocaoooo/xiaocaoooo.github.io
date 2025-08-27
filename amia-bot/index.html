@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
             margin: 0 auto;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -110,8 +111,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section {
@@ -145,7 +153,7 @@
 
         .command-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .command-name {
@@ -189,7 +197,7 @@
             background: white;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-left: 3px solid #28a745;
         }
 
@@ -246,8 +254,8 @@
         }
 
         .quick-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
@@ -257,7 +265,7 @@
         }
 
         .quick-btn:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-1px);
         }
 
@@ -353,6 +361,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -360,7 +369,8 @@
             <p>智能AI助手，为您提供全方位的聊天、娱乐和管理体验</p>
             <div style="margin-top: 20px;">
                 <a href="https://qm.qq.com/q/kWarbQkuTm" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/QQ%20Group%201032106495-加入群聊-blue" alt="QQ群: 1032106495" style="border-radius: 4px;">
+                    <img src="https://img.shields.io/badge/QQ%20Group%201032106495-加入群聊-blue" alt="QQ群: 1032106495"
+                        style="border-radius: 4px;">
                 </a>
             </div>
         </div>
@@ -494,6 +504,11 @@
                             <div class="command-name">/点歌 &lt;关键词&gt;</div>
                             <div class="command-desc">中文别名命令，更符合用户习惯</div>
                         </div>
+                        <div class="command-card">
+                            <div class="command-name">/emjlrc [歌曲名] 或 /emjlrc id [歌曲ID]</div>
+                            <div class="command-desc">将歌词转换为emoji风格的特殊效果</div>
+                            <div class="command-examples">示例：/emjlrc 晴天 或 /emjlrc id 1234567</div>
+                        </div>
                     </div>
                 </div>
 
@@ -504,6 +519,7 @@
                         <li>使用 <code>/music down [歌曲ID]</code> 可以下载歌曲文件，支持离线收听</li>
                         <li>搜索结果会显示歌曲ID，方便后续精确播放</li>
                         <li>支持模糊搜索，输入歌词片段也能找到对应歌曲</li>
+                        <li>使用 <code>/emjlrc</code> 命令可以将歌词转换为emoji风格的特殊效果</li>
                     </ul>
                 </div>
             </div>
@@ -512,7 +528,7 @@
             <div class="tab-content" id="bilibili">
                 <div class="section">
                     <h2 class="section-title">📺 B站功能</h2>
-                    
+
                     <div class="section">
                         <h3 style="color: #667eea; margin-bottom: 15px;">🔍 视频解析（自动触发）</h3>
                         <div class="command-grid">
@@ -558,41 +574,54 @@
             <div class="tab-content" id="entertainment">
                 <div class="section">
                     <h2 class="section-title">🎮 娱乐功能</h2>
-                    
+
                     <div class="section">
                         <h3 style="color: #667eea; margin-bottom: 15px;">🎭 PJSK表情包生成</h3>
                         <div class="command-grid">
                             <div class="command-card">
-                                <div class="command-name">/pjsk &lt;文本&gt; [角色] [参数]</div>
+                                <div class="command-name">/pjsk [角色] &lt;文本&gt; [参数]</div>
                                 <div class="command-desc">生成PJSK风格的表情包，支持27个角色和多种自定义参数</div>
                                 <div class="command-params">参数：&lt;文本&gt;必填，[角色]可选，[参数]可选</div>
-                                <div class="command-examples">示例：/pjsk 你好世界 miku</div>
+                                <div class="command-examples">示例：/pjsk miku 你好世界</div>
                             </div>
                         </div>
-                        
+
                         <div style="margin: 20px 0;">
                             <strong>可用角色（27个）：</strong>
+                            <div style="margin-top: 10px;"><a href="../pjsk-sticker-bot/preview.html" target="_blank" style="color: #667eea; text-decoration: none;">点击查看所有角色表情包预览 →</a></div>
                             <div class="role-grid">
-                                <div class="role-item">airi</div><div class="role-item">akito</div><div class="role-item">an</div>
-                                <div class="role-item">emu</div><div class="role-item">ena</div><div class="role-item">haruka</div>
-                                <div class="role-item">honami</div><div class="role-item">ichika</div><div class="role-item">kaito</div>
-                                <div class="role-item">kanade</div><div class="role-item">kohane</div><div class="role-item">len</div>
-                                <div class="role-item">luka</div><div class="role-item">mafuyu</div><div class="role-item">meiko</div>
-                                <div class="role-item">miku</div><div class="role-item">minori</div><div class="role-item">mizuki</div>
-                                <div class="role-item">nene</div><div class="role-item">rin</div><div class="role-item">rui</div>
-                                <div class="role-item">saki</div><div class="role-item">shiho</div><div class="role-item">shizuku</div>
-                                <div class="role-item">touya</div><div class="role-item">tsukasa</div>
+                                <div class="role-item">airi</div>
+                                <div class="role-item">akito</div>
+                                <div class="role-item">an</div>
+                                <div class="role-item">emu</div>
+                                <div class="role-item">ena</div>
+                                <div class="role-item">haruka</div>
+                                <div class="role-item">honami</div>
+                                <div class="role-item">ichika</div>
+                                <div class="role-item">kaito</div>
+                                <div class="role-item">kanade</div>
+                                <div class="role-item">kohane</div>
+                                <div class="role-item">len</div>
+                                <div class="role-item">luka</div>
+                                <div class="role-item">mafuyu</div>
+                                <div class="role-item">meiko</div>
+                                <div class="role-item">miku</div>
+                                <div class="role-item">minori</div>
+                                <div class="role-item">mizuki</div>
+                                <div class="role-item">nene</div>
+                                <div class="role-item">rin</div>
+                                <div class="role-item">rui</div>
+                                <div class="role-item">saki</div>
+                                <div class="role-item">shiho</div>
+                                <div class="role-item">shizuku</div>
+                                <div class="role-item">touya</div>
+                                <div class="role-item">tsukasa</div>
                             </div>
                         </div>
 
                         <div class="command-examples">
                             <strong>高级参数：</strong><br>
-                            • fsize=数字 - 字体大小 (25-99)<br>
-                            • pos=x,y - 文字位置 (0-999)<br>
-                            • lean=角度 - 旋转角度 (0-359)<br>
-                            • clr=r,g,b - 文字颜色RGB值<br>
-                            • font=1/2 - 字体选择<br>
-                            • esize=数字 - 描边大小 (1-7)
+                            直接输入/pjsk获取
                         </div>
                     </div>
 
@@ -628,7 +657,7 @@
             <div class="tab-content" id="query">
                 <div class="section">
                     <h2 class="section-title">🔍 查询统计功能</h2>
-                    
+
                     <div class="section">
                         <h3 style="color: #667eea; margin-bottom: 15px;">👤 个人信息查询</h3>
                         <div class="command-grid">
@@ -717,7 +746,7 @@
             <div class="tab-content" id="management">
                 <div class="section">
                     <h2 class="section-title">👥 群管理功能</h2>
-                    
+
                     <div class="section">
                         <h3 style="color: #667eea; margin-bottom: 15px;">❤️ 互动功能</h3>
                         <div class="command-grid">
@@ -754,7 +783,7 @@
             <div class="tab-content" id="tips">
                 <div class="section">
                     <h2 class="section-title">💡 使用技巧与故障排除</h2>
-                    
+
                     <div class="section">
                         <h3 style="color: #667eea; margin-bottom: 15px;">🎯 高效使用建议</h3>
                         <div class="tips-section">
@@ -811,7 +840,8 @@
                     <div class="section">
                         <h3 style="color: #667eea; margin-bottom: 15px;">📋 命令速查表</h3>
                         <div style="overflow-x: auto;">
-                            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <table
+                                style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                                 <thead style="background: #667eea; color: white;">
                                     <tr>
                                         <th style="padding: 12px; text-align: left;">功能类别</th>
@@ -824,6 +854,11 @@
                                         <td style="padding: 12px;">音乐</td>
                                         <td style="padding: 12px;">/music</td>
                                         <td style="padding: 12px;">/music 告白气球</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 12px;">歌词转emoji</td>
+                                        <td style="padding: 12px;">/emjlrc</td>
+                                        <td style="padding: 12px;">/emjlrc 晴天 或 /emjlrc id 1234567</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid #eee;">
                                         <td style="padding: 12px;">AI对话</td>
@@ -917,7 +952,7 @@
 
             // 显示选中的标签页内容
             document.getElementById(tabName).classList.add('active');
-            
+
             // 激活对应的标签按钮
             event.target.classList.add('active');
 
@@ -926,9 +961,9 @@
         }
 
         // 页面加载完成后的初始化
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // 添加键盘导航支持
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.ctrlKey || e.metaKey) {
                     const tabs = ['overview', 'ai', 'music', 'bilibili', 'entertainment', 'query', 'voice', 'management', 'tips'];
                     const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -945,7 +980,7 @@
             // 添加平滑滚动效果
             const links = document.querySelectorAll('a[href^="#"]');
             links.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
@@ -956,4 +991,5 @@
         });
     </script>
 </body>
+
 </html>
