@@ -579,10 +579,105 @@
                         <h3 style="color: #667eea; margin-bottom: 15px;">🎭 PJSK表情包生成</h3>
                         <div class="command-grid">
                             <div class="command-card">
-                                <div class="command-name">/pjsk [角色] &lt;文本&gt; [参数]</div>
-                                <div class="command-desc">生成PJSK风格的表情包，支持27个角色和多种自定义参数</div>
-                                <div class="command-params">参数：&lt;文本&gt;必填，[角色]可选，[参数]可选</div>
+                                <div class="command-name">/pjsk [文本] [角色] [参数]</div>
+                                <div class="command-desc">生成个性化的《世界计划 缤纷舞台！feat. 初音未来》风格贴纸</div>
                                 <div class="command-examples">示例：/pjsk miku 你好世界</div>
+                            </div>
+                            <div class="command-card">
+                                <div class="command-name">/previewpjsk</div>
+                                <div class="command-desc">预览所有角色的贴纸</div>
+                            </div>
+                        </div>
+
+                        <div class="tips-section">
+                            <div class="tips-title">💡 指令格式</div>
+                            <p style="margin-bottom: 15px;"><code>/pjsk</code> 命令的指令格式非常灵活，由<strong>位置参数</strong>和<strong>关键字参数</strong>两部分组成。</p>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li><strong>位置参数</strong>：按顺序输入的参数，例如角色名和要添加的文本</li>
+                                <li><strong>关键字参数</strong>：以 <code>key=value</code> 形式输入的参数，用于更精细地控制贴纸样式</li>
+                            </ul>
+                        </div>
+
+                        <div class="section" style="margin-top: 30px;">
+                            <h4 style="color: #333; margin-bottom: 15px;">📝 参数详解</h4>
+                            
+                            <h5 style="color: #667eea; margin: 15px 0 10px 0;">1. 位置参数</h5>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li><strong>角色指定</strong> (可选)：你可以用以下方式指定角色：
+                                    <ul style="margin-left: 20px; margin-top: 5px;">
+                                        <li><strong>角色名称</strong>：输入角色的名称，如 <code>miku</code>、<code>len</code></li>
+                                        <li><strong>角色和贴纸编号</strong>：输入角色名加上贴纸的编号，如 <code>miku1</code>、<code>len3</code></li>
+                                        <li><strong>随机角色</strong>：不填就是随机角色</li>
+                                    </ul>
+                                </li>
+                                <li><strong>文本内容</strong> (必需)：这是你希望显示在贴纸上的文字，如果包含空格可以使用引号括起来</li>
+                            </ul>
+
+                            <h5 style="color: #667eea; margin: 15px 0 10px 0;">2. 关键字参数</h5>
+                            <div class="role-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                                <div class="role-item" style="text-align: left; padding: 10px;">
+                                    <strong>pos=(x,y)</strong><br>
+                                    调整文本在贴纸上的<strong>位置</strong>。<code>x</code> 代表水平坐标，<code>y</code> 代表垂直坐标。<br>
+                                    例如：<code>pos=(100,50)</code>
+                                </div>
+                                <div class="role-item" style="text-align: left; padding: 10px;">
+                                    <strong>clr=(r,g,b)</strong><br>
+                                    设置文本的<strong>颜色</strong>，使用<strong>RGB</strong>值。<br>
+                                    例如：<code>clr=(255,0,0)</code> 表示红色
+                                </div>
+                                <div class="role-item" style="text-align: left; padding: 10px;">
+                                    <strong>stkclr=(r,g,b)</strong><br>
+                                    设置文本<strong>描边颜色</strong>，同样使用<strong>RGB</strong>值。<br>
+                                    例如：<code>stkclr=(255,255,255)</code> 表示白色
+                                </div>
+                                <div class="role-item" style="text-align: left; padding: 10px;">
+                                    <strong>fs=size</strong><br>
+                                    设置文本的<strong>字体大小</strong>。<br>
+                                    例如：<code>fs=60</code>
+                                </div>
+                                <div class="role-item" style="text-align: left; padding: 10px;">
+                                    <strong>stkw=width</strong><br>
+                                    设置文本<strong>描边宽度</strong>。<br>
+                                    例如：<code>stkw=6</code>
+                                </div>
+                                <div class="role-item" style="text-align: left; padding: 10px;">
+                                    <strong>font=index</strong><br>
+                                    选择<strong>字体</strong>。<code>font=0</code> 为默认字体，<code>font=1</code> 为另一种字体（通常用于日文假名）。
+                                </div>
+                                <div class="role-item" style="text-align: left; padding: 10px;">
+                                    <strong>rot=angle</strong><br>
+                                    设置文本的<strong>旋转角度</strong>（单位：度）。正值顺时针旋转，负值逆时针旋转。<br>
+                                    例如：<code>rot=15</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section" style="margin-top: 30px;">
+                            <h4 style="color: #333; margin-bottom: 15px;">📋 示例</h4>
+                            <div class="command-examples" style="margin-bottom: 15px;">
+                                <strong>1. 基础用法</strong><br>
+                                在随机初音未来贴纸上添加"你好！"文字。<br>
+                                <code>/pjsk miku 你好！</code>
+                            </div>
+                            <div class="command-examples" style="margin-bottom: 15px;">
+                                <strong>2. 指定贴纸和文本</strong><br>
+                                使用镜音连的第3张贴纸，并添加"镜音连"文字。<br>
+                                <code>/pjsk len3 镜音连</code>
+                            </div>
+                            <div class="command-examples" style="margin-bottom: 15px;">
+                                <strong>3. 自定义文本颜色和位置</strong><br>
+                                在贴纸上添加粉色文字"恭喜你！"，并调整其位置。<br>
+                                <code>/pjsk miku 恭喜你！ pos=(100,50) clr=(255,192,203)</code>
+                            </div>
+                            <div class="command-examples" style="margin-bottom: 15px;">
+                                <strong>4. 更改字体和旋转角度</strong><br>
+                                使用日文字体，并让"谢谢！"文字不旋转。<br>
+                                <code>/pjsk shizuku ありがとう！ font=1 rot=0</code>
+                            </div>
+                            <div class="command-examples" style="margin-bottom: 15px;">
+                                <strong>5. 组合多种参数</strong><br>
+                                使用镜音铃的第1张贴纸，并进行多项自定义设置。<br>
+                                <code>/pjsk rin1 晚安~ pos=(50,150) fs=60 stkclr=(0,0,255) stkw=6 rot=-10</code>
                             </div>
                         </div>
 
@@ -617,11 +712,6 @@
                                 <div class="role-item">touya</div>
                                 <div class="role-item">tsukasa</div>
                             </div>
-                        </div>
-
-                        <div class="command-examples">
-                            <strong>高级参数：</strong><br>
-                            直接输入/pjsk获取
                         </div>
                     </div>
 
